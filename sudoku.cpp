@@ -69,3 +69,20 @@ void display_board(const char board[9][9]) {
 }
 
 /* add your functions here */
+
+
+
+/* Check if the board is fully filed  */
+bool is_complete(char board[][9]){
+  // flag indicates if there is an entry unfilled by a digit in the board
+  bool flag = 1;
+  
+  for(int i = 0; i < 9; i++)
+    for(int j = 0; j < 9; j++)
+      if(board[i][j]<'0' || board[i][j]>'9'){
+        flag = 0; // If one isn't occupied by a digit: quit
+        break;
+      }
+
+  return flag;
+}
