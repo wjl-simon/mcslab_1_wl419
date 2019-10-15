@@ -44,7 +44,7 @@ int main() {
   display_board(board);
 
 	// write more tests
-
+  /*
   cout << "=================== Question 3 ===================" << "\n\n";
 
   load_board("easy.dat", board);
@@ -77,6 +77,6 @@ int main() {
   cout << "=================== Question 5 ===================" << "\n\n";
 
 	// write more tests
-  
+*/  
   return 0;
 }
