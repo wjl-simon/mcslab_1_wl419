@@ -150,3 +150,25 @@ int centre_index(int index){
     default: return 0;
   }
 }
+
+
+/* Save the board to a file. If sucess then returns 1 otherwise returns 0 */
+bool save_board(const char* filename, const char board[][9]){
+  // Create the output file
+  ofstream outfile; outfile.open(filename);
+
+  // Output the content of the board into the file
+  if(!outfile.fail()){
+    for(int i = 0; i < 9; i++)
+      for(int j = 0; j < 9; j++){
+        outfile << board[i][j];
+        if(j == 8)
+          outfile << endl;
+      }
+
+    outfile.close(); // close the file  
+    return true;
+  }
+  else
+    return false;
+}
