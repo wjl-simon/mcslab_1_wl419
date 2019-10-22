@@ -11,9 +11,6 @@ bool make_move(const char position[], char digit, char board[][9]);
 /* Save the board to a file. If sucess then returns 1 otherwise returns 0 */
 bool save_board(const char* filename, const char board[][9]);
 
-/* SudokuBoard: a board with pointers to next and previous board */
-//struct SudokuBoard;
-
 /* Solve the sudoku puzzle */
 bool solve_board(char board[][9]);
 

@@ -150,134 +150,7 @@ bool save_board(const char* filename, const char board[][9])
 }
 
 
-/*
-
-struct SudokuBoard
-{
-  char board[9][9]; // a copy of sudoku board
-  char successful_digit; // The digit of this board's successful move
-  SudokuBoard *previous; // Pointers to the previous/next board
-  //SudokuBoard *next;
-  SudokuBoard *GetAddress(){ return this; } // Return the address of itself
-  void suicide() { delete this; } // delete itself
-  void CopyBoard(const char board_src[][9]) //  Copy the board from others
-  {
-    for(int i = 0; i < 9; i++)
-      for(int j = 0; j < 9; j++)
-        this->board[i][j] = board_src[i][j];
-  }
-};
-
-
-
-bool solve_board(char board[][9])
-{ // Encapsulate the board into of SudokuBoard struct
-  //SudokuBoard *front;
-  SudokuBoard game;
-  //game.previous = front;
-  game.previous = NULL; game.CopyBoard(board); game.successful_digit = '0';
-  // Solve it!
-  SudokuBoard solution = solve_one_step(game);
-  // Write the solution into board
-  if(is_complete(solution.board))
-  {
-    for(int i = 0; i < 9; i++)
-      for(int j = 0; j < 9; j++)
-        board[i][j] = solution.board[i][j];    
-    return true;
-  }
-  else return false;
-}
-
-
-SudokuBoard solve_one_step(SudokuBoard &game)
-{ // The index of the current entry in which we attempt to fill
-  static int cur_row = 0; static int cur_col = 0;
-
-  // Only solve if the board isn't completed
-  if(!is_complete(game.board))
-  {  //----1. Search for the next position of an empty entry----
-    bool found_new_pos = 0; // flag indicates if new position is found
-    for(int i = cur_row; i < 9; i++)
-    {
-      if(!found_new_pos)
-      {
-        for(int j = 0; j < 9; j++)
-          if(game.board[i][j] == '.')
-          { // Update the current position in which we fill
-            found_new_pos = 1;
-            cur_row = i; cur_col = j;
-            cout<<"curent pos " << char(i+65) << "," << j+1 << endl;
-            cin.ignore();
-            break;
-          }
-      }
-      else break;
-    }
-    
-    //----2. Create a copy of the board----
-    SudokuBoard *game_copy = new SudokuBoard;
-    game_copy->CopyBoard(game.board);
-    game_copy->previous = game.GetAddress();
-    //game_copy->next = NULL;
-    //game.next = game_copy->GetAddress();
-    
-    //----3. Attempt to solve----
-    // Convert the position  back to a string
-    char position[3] = {(char)(cur_row+65), (char)(cur_col+49), '\0'};
-    // At current position, this digit is either invalid or will lead to a dead end
-    static char fail_digit = '0';
-
-    for(char ch = fail_digit + 1; ch <= '9'; ch++)
-    {
-      if(make_move(position, ch, game_copy->board))
-      {// If new move succeeds, that move is stored and game_copy becomes a new board
-        cout << "Successful new move in " << (char)(cur_row+65) << ","
-             << cur_col+1 << " : " << ch << endl;
-        display_board(game_copy->board);
-        cin.ignore();
-        game_copy->successful_digit = ch;
-        fail_digit = '0';
-        return solve_one_step(*game_copy);
-      }
-      else fail_digit = ch;
-    }
-
-    //---- 4. Capture the exceptions----
-    // if the program manages to run here: the previous step(s) is(are) wrong
-    // so we delete the newed board
-    //game.next = NULL;
-    cout << "Failed attempt! delete the current board!" << endl;
-    cin.ignore();
-    delete game_copy;
-    // Tell the program that the previous step is wrong and don't do that again
-    if(game.successful_digit < '9') // Very likly the lastes previous step is wrong
-    {
-      fail_digit = game.previous->successful_digit;
-      game.previous->successful_digit = '0';
-      //game.previous->next = NULL;
-    // Resume to the lastest previous board
-    SudokuBoard *last_game = game.previous->GetAddress();
-    game.suicide(); // Kill the current board
-    return solve_one_step(*last_game);
-    }
-    else // Very likely the second previous is wrong!
-    {
-      fail_digit = game.previous->previous->successful_digit;
-      game.previous->previous->successful_digit = '0';
-      // Resume to the second last board
-      SudokuBoard *last_last_game = game.previous->previous->GetAddress();
-      game.previous->suicide(); game.suicide();
-      return solve_one_step(*last_last_game);
-    }
-  }
-  else return game; // The final solution has already found
-}
-
-*/
-
-
-//  Copy the board from others
+/*  Copy the board from others */
 void copy_board(char board_des[][9], const char board_src[][9])
 {
   for(int i = 0; i < 9; i++)
@@ -285,7 +158,7 @@ void copy_board(char board_des[][9], const char board_src[][9])
       board_des[i][j] = board_src[i][j];
 }
 
-// Funtion to solve the sodoku puzzle
+/* Funtion to solve the sodoku puzzle */
 bool solve_board(char board[][9])
 {
   // Create a copy of the board
@@ -302,7 +175,7 @@ bool solve_board(char board[][9])
 }
 
 
-// Recursive Solver for the Sudoku puzzle
+/* Recursive Solver for the Sudoku puzzle */
 bool sudoku_solver(char board[][9])
 {
   if(!is_complete(board))
