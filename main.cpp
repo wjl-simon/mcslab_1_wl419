@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdio>
 #include "sudoku.h"
+#include <chrono>
 
 using namespace std;
 
@@ -76,7 +77,51 @@ int main() {
 
   cout << "=================== Question 5 ===================" << "\n\n";
 
-	// write more tests
+  load_board("mystery1.dat", board);
+  // Start time recording
+  auto begin = chrono::high_resolution_clock::now();
+  if (solve_board(board)) {
+    cout << "The 'mystery1' board has a solution:" << '\n';
+    display_board(board);
+  } else 
+    cout << "A solution cannot be found." << '\n';
+  cout << '\n';
+
+  auto end = chrono::high_resolution_clock::now();
+  auto millisec = chrono::duration_cast<chrono::milliseconds>(end - begin);
+  cout << "Execution time for mystery1: " << millisec.count() << "ms." << endl;
+
+
+  load_board("mystery2.dat", board);
+  // Start time recording
+  begin = chrono::high_resolution_clock::now();
+  if (solve_board(board)) {
+    cout << "The 'mystery2' board has a solution:" << '\n';
+    display_board(board);
+  } else 
+    cout << "A solution cannot be found." << '\n';
+  cout << '\n';
+  
+  end = chrono::high_resolution_clock::now();
+  millisec = chrono::duration_cast<chrono::milliseconds>(end - begin);
+  cout << "Execution time for mystery2: " << millisec.count() << "ms." << endl;
+
+
+  
+  load_board("mystery3.dat", board);
+  // Start time recording
+  begin = chrono::high_resolution_clock::now();
+  if (solve_board(board)) {
+    cout << "The 'mystery3' board has a solution:" << '\n';
+    display_board(board);
+  } else 
+    cout << "A solution cannot be found." << '\n';
+  cout << '\n';
+  
+  end = chrono::high_resolution_clock::now();
+  millisec = chrono::duration_cast<chrono::milliseconds>(end - begin);
+  cout << "Execution time for mystery3: " << millisec.count() << "ms." << endl;
+ 	// write more tests
   
   return 0;
 }

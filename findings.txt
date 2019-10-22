@@ -1,1 +1,34 @@
 Summarise your findings here (see specification).
+
+
+It is natural that the execution time for a Sudoku puzzle should be one
+of the strightforward metric for the determination of the difficulty
+of those three mystery puzzle, as we can assume an easy puzzle
+requires less operations to find a solution (needing less steps to go
+backwards to the previous entries).
+
+Since in time complexity caculations, a greater number of
+operations for certain means a smaller execution time, we can somehow
+infer that a puzzule with a smaller execution time is a simpler one.
+
+To aid the execution time measurement, we utilised the  high resolution
+clock class (in chrono library) to record the elapsed time by using
+the following lines of code:
+
+...
+#include <chrono>
+...
+
+  auto begin = chrono::high_resolution_clock::now();
+  auto end = chrono::high_resolution_clock::now();
+  auto millisec = chrono::duration_cast<chrono::milliseconds>(end - begin);
+  cout << "Execution time for mystery1: " << millisec.count() << "ms." << endl;
+
+(source: https://www.reddit.com/r/learnprogramming/comments/1dlxqv/c_measuring_time_elapsed_in_milliseconds/)
+
+After several times of trial, it turns out that for "mystery3", its
+execution time on average is 7ms, which suggests it is of "hard"
+difficulty; for "mystery1" it produced a much greater time which is
+about 250ms, indicating it is of "extermely hard" difficulty; while
+"mystery2" does not have a solution at all, meaning it is impossible
+to solve.
