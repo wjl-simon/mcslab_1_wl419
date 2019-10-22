@@ -29,6 +29,6 @@ the following lines of code:
 After several times of trial, it turns out that for "mystery3", its
 execution time on average is 7ms, which suggests it is of "hard"
 difficulty; for "mystery1" it produced a much greater time which is
-about 250ms, indicating it is of "extermely hard" difficulty; while
+about 200ms, indicating it is of "extermely hard" difficulty; while
 "mystery2" does not have a solution at all, meaning it is impossible
 to solve.
