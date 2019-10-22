@@ -78,7 +78,7 @@ bool is_complete(char board[][9])
   
   for(int i = 0; i < 9; i++)
     for(int j = 0; j < 9; j++)
-      if(board[i][j]<'0' || board[i][j]>'9')
+      if(board[i][j]<'1' || board[i][j]>'9')
       {
         flag = 0; // If one isn't occupied by a digit: quit
         break;
